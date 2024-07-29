@@ -1,8 +1,6 @@
 version: 2.1
-
 orbs:
   python: circleci/python@1.5.0
-  
 jobs:
   build-and-push:
     executor: python/default
@@ -19,9 +17,13 @@ jobs:
             docker tag oclettingsv1:${CIRCLE_SHA1} $DOCKERHUB_USERNAME/oclettingsv1:${CIRCLE_SHA1}
             docker push $DOCKERHUB_USERNAME/oclettingsv1:${CIRCLE_SHA1}
       - run:
+          name: Install Heroku CLI
+          command: |
+            curl https://cli-assets.heroku.com/install.sh | sh
+      - run:
           name: Push to Heroku
           command: |
-            docker tag oclettings:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
+            docker tag oclettingsv1:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
             echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
             docker push registry.heroku.com/oclettingsv1/web
       - run:
