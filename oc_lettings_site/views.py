@@ -1,8 +1,11 @@
+import logging
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
+
+logger = logging.getLogger(__name__)
 
 
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
     """
     Renders the index page.
 
@@ -12,10 +15,14 @@ def index(request):
     Returns:
         HttpResponse: The response object with the rendered template.
     """
-    return render(request, 'index.html')
+    try:
+        return render(request, 'index.html')
+    except Exception as e:
+        logger.error("Error rendering index page: %s", e)
+        raise
 
 
-def custom_404(request, exception):
+def custom_404(request: HttpRequest, exception: Exception) -> HttpResponse:
     """
     Renders the custom 404 error page.
 
@@ -26,10 +33,14 @@ def custom_404(request, exception):
     Returns:
         HttpResponse: The response object with the rendered template.
     """
-    return render(request, '404.html', status=404)
+    try:
+        return render(request, '404.html', status=404)
+    except Exception as e:
+        logger.error("Error rendering custom 404 page: %s", e)
+        raise
 
 
-def custom_500(request):
+def custom_500(request: HttpRequest) -> HttpResponse:
     """
     Renders the custom 500 error page.
 
@@ -39,4 +50,8 @@ def custom_500(request):
     Returns:
         HttpResponse: The response object with the rendered template.
     """
-    return render(request, '500.html', status=500)
+    try:
+        return render(request, 'errors/500.html', status=500)
+    except Exception as e:
+        logger.error("Error rendering custom 500 page: %s", e)
+        raise
