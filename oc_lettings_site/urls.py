@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.urls import path
 from profiles.views import profile, profiles_index
 from letting.views import lettings_index, letting
 from . import views
@@ -7,8 +6,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import settings as set
 from django.urls import path
-
-
 
 urlpatterns = [
     path('', views.index, name='index'),

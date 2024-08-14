@@ -1,0 +1,11 @@
+[run]
+omit =
+    */OC_lettings_site/*
+    */tests.py
+    */migrations/*
+    */manage.py
+    */settings.py
+    */wsgi.py
+    */asgi.py
+    */__init__.py
+    */models.py

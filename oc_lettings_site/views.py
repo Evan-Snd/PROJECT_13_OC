@@ -51,7 +51,7 @@ def custom_500(request: HttpRequest) -> HttpResponse:
         HttpResponse: The response object with the rendered template.
     """
     try:
-        return render(request, 'errors/500.html', status=500)
+        return render(request, '500.html', status=500)
     except Exception as e:
         logger.error("Error rendering custom 500 page: %s", e)
         raise

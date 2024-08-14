@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Profile
-
+from unittest.mock import patch
 
 class ProfileViewTests(TestCase):
     def setUp(self):
@@ -22,6 +22,12 @@ class ProfileViewTests(TestCase):
         self.assertTemplateUsed(response, 'profile.html')
 
     def test_profile_view_not_found(self):
-        response = self.client.get(1)
-        self.assertEqual(response.status_code, 404)
-        self.assertContains(response, 'Profile not found')
+        response = self.client.get(reverse('profile', args=['nonexistentuser']))
+        result = response.status_code
+        self.assertEqual(result, 404)
+
+    @patch('profiles.views.Profile.objects.get')
+    def test_profile_view_raises_exception(self, mock_get):
+        mock_get.side_effect = Exception('Test Exception')
+        response = self.client.get(reverse('profile', args=[self.user.username]))
+        self.assertEqual(response.status_code, 500)

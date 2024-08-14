@@ -1,4 +1,10 @@
 **/__pycache__
 *.pyc
-venv
+env
 .idea
+.coverage
+.coveragerc
+htmlcov
+profiles/.coverage
+letting/.coverage
+oc_lettings_site/.coverage

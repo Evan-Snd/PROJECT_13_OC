@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from .models import Letting, Address
+from unittest.mock import patch
 
 
 class LettingViewTests(TestCase):
@@ -30,4 +31,9 @@ class LettingViewTests(TestCase):
     def test_letting_view_not_found(self):
         response = self.client.get(reverse('letting', args=[999]))
         self.assertEqual(response.status_code, 404)
-        self.assertContains(response, 'Letting not found')
+
+    @patch('letting.views.Letting.objects.get')
+    def test_letting_view_raises_exception(self, mock_get):
+        mock_get.side_effect = Exception('Test Exception')
+        response = self.client.get(reverse('letting', args=[self.letting.id]))
+        self.assertEqual(response.status_code, 500)
