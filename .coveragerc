@@ -8,4 +8,3 @@ omit =
     */wsgi.py
     */asgi.py
     */__init__.py
-    */models.py
