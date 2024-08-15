@@ -2,7 +2,8 @@ import os
 
 from pathlib import Path
 import sentry_sdk
-dsn_adress = 'https://dad493db3071b33b9f98468411458e50@o4507339445895168.ingest.de.sentry.io/4507696103489616'
+dsn_adress = ('https://dad493db3071b33b9f98468411458e50@o4507339445895168.ingest.de.s'
+              'entry.io/4507696103489616')
 
 sentry_sdk.init(
     dsn=dsn_adress,
