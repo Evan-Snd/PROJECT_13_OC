@@ -16,5 +16,5 @@ jobs:
 
     - name: Deploy Docker image
       run: |
-        docker pull shmuel505/oc-lettings::latest
-        docker run -d -p 8000:8000 shmuel505/oc-lettings::latest
+        docker pull shmuel505/oc-lettings:latest
+        docker run -d -p 8000:8000 shmuel505/oc-lettings:latest
