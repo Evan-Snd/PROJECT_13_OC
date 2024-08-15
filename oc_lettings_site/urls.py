@@ -18,4 +18,4 @@ urlpatterns = [
 handler404 = 'oc_lettings_site.views.custom_404'
 handler500 = 'oc_lettings_site.views.custom_500'
 if settings.DEBUG:
-    urlpatterns += static(set.STATIC_URL)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
