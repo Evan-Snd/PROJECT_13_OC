@@ -1,16 +1,16 @@
 name: CI
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - main
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  test:
-    name: Run Tests and Analysis
+  build:
+    name: Build and Test
     runs-on: ubuntu-latest
 
     steps:
@@ -24,32 +24,22 @@ jobs:
 
     - name: Install dependencies
       run: |
+        python -m venv venv
+        source venv/bin/activate  # Activate virtual environment on Linux/macOS
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Run migrations
       run: |
-        python manage.py makemigrations
+        source venv/bin/activate
         python manage.py migrate
-
-    - name: Create env file
-      run: |
-        touch oc_lettings_site/.env
-        echo SECRET_KEY=${SECRET_KEY} >> oc_lettings_site/.env
-        echo ENV_SENTRY=${ENV_SENTRY}  >> oc_lettings_site/.env
-        echo SENTRY_KEY=${SENTRY_KEY}  >> oc_lettings_site/.env
-        cat oc_lettings_site/.env
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        ENV_SENTRY: ${{ secrets.ENV_SENTRY }}
-        SENTRY_KEY: ${{ secrets.SENTRY_KEY }}
-
-
-    - name: Analysing the code with flake8
-      run: |
-        flake8
 
     - name: Run tests
       run: |
+        source venv/bin/activate
         coverage run -m pytest
-        coverage report
+
+    - name: Analyze code with flake8
+      run: |
+        source venv/bin/activate
+        flake8
