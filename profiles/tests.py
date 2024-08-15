@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import Profile
-from unittest.mock import patch
+#from unittest.mock import patch
 
 class ProfileViewTests(TestCase):
     def setUp(self):

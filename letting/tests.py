@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from .models import Letting, Address
-from unittest.mock import patch
+#from unittest.mock import patch
 
 
 class LettingViewTests(TestCase):

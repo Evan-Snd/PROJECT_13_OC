@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from unittest.mock import patch
+#from unittest.mock import patch
 
 
 class IndexViewTests(TestCase):
