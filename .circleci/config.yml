@@ -43,8 +43,7 @@ jobs:
       - run:
           name: Push to Heroku
           command: |
-            docker tag oclettingsv1:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
-            echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USERNAME --password-stdin
+            docker tag $DOCKERHUB_USERNAME/oclettingsv1:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
             heroku container:login
             docker push registry.heroku.com/oclettingsv1/web
       - run:
