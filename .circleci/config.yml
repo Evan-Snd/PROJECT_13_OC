@@ -47,7 +47,7 @@ jobs:
             echo "$HEROKU_API_KEY" | docker login --username evansinda --password-stdin registry.heroku.com
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             heroku container:login
-            docker push registry.heroku.com/oclettingsv1/web
+            docker push $DOCKERHUB_USERNAME/registry.heroku.com/oclettingsv1/web:${CIRCLE_SHA1}
       - run:
           name: Release to Heroku
           command: |
