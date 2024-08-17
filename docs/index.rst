@@ -12,8 +12,6 @@ Welcome to oc-lettings-site's documentation!
    installation
    usage
    api
-   contributing
-   changelog
 
 Indices and tables
 ==================
