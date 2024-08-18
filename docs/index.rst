@@ -10,7 +10,7 @@ Welcome to oc-lettings-site's documentation!
    :caption: Contents:
 
    installation
-   usage
+   use
    api
 
 Indices and tables
