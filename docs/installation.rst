@@ -18,7 +18,7 @@ Steps
 
    .. code-block:: bash
 
-      git clone https://github.com/yourusername/your-repository-name.git
+      git clone https://github.com/shmuel-bitan/Python-OC-Lettings-FR.git
       cd your-repository-name
 
 2. Create a virtual environment and activate it:
@@ -34,21 +34,14 @@ Steps
 
       pip install -r requirements.txt
 
-4. Set up your environment variables. Create a `.env` file and add your environment variables:
-
-   .. code-block:: bash
-
-      SECRET_KEY=your_secret_key
-      DATABASE_URL=postgres://youruser:yourpassword@localhost:5432/yourdb
-
-5. Run the migrations and start the development server:
+4. Run the migrations and start the development server:
 
    .. code-block:: bash
 
       python manage.py migrate
       python manage.py runserver
 
-6. (Optional) If you want to use Docker, build and run the Docker containers:
+5. (Optional) If you want to use Docker, build and run the Docker containers:
 
    .. code-block:: bash
 
