@@ -53,8 +53,7 @@ jobs:
       - run:
           name: Release to Heroku
           command: |
-            heroku container:release web -a python-openclassroom13
-
+            git push heroku main
 workflows:
   version: 2
   build-and-deploy:
