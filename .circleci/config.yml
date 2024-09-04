@@ -29,13 +29,13 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            docker build -t oclettingsv1:${CIRCLE_SHA1} -f ./Dockerfile .
+            docker build -t python-openclassroom13:${CIRCLE_SHA1} -f ./Dockerfile .
       - run:
           name: Push to Docker Hub
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker tag oclettingsv1:${CIRCLE_SHA1} $DOCKERHUB_USERNAME/oclettingsv1:${CIRCLE_SHA1}
-            docker push $DOCKERHUB_USERNAME/oclettingsv1:${CIRCLE_SHA1}
+            docker tag python-openclassroom13:${CIRCLE_SHA1} $DOCKERHUB_USERNAME/python-openclassroom13:${CIRCLE_SHA1}
+            docker push $DOCKERHUB_USERNAME/python-openclassroom13:${CIRCLE_SHA1}
       - run:
           name: Install Heroku CLI
           command: |
@@ -47,13 +47,13 @@ jobs:
       - run:
           name: Push to Heroku
           command: |
-            docker tag oclettingsv1:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
+            docker tag python-openclassroom13:${CIRCLE_SHA1} registry.heroku.com/python-openclassroom13/web
             echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
-            docker push registry.heroku.com/oclettingsv1/web
+            docker push registry.heroku.com/python-openclassroom13/web
       - run:
           name: Release to Heroku
           command: |
-            heroku container:release web -a oclettingsv1
+            heroku container:release web -a python-openclassroom13
 
 workflows:
   version: 2
