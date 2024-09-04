@@ -41,6 +41,10 @@ jobs:
           command: |
             curl https://cli-assets.heroku.com/install.sh | sh
       - run:
+          name: Verify Docker login
+          command: |
+            echo "$HEROKU_API_KEY" | docker login --username=_ --password-stdin registry.heroku.com
+      - run:
           name: Push to Heroku
           command: |
             docker tag oclettingsv1:${CIRCLE_SHA1} registry.heroku.com/oclettingsv1/web
