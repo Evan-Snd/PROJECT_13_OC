@@ -9,7 +9,6 @@ Before you begin, ensure you have met the following requirements:
 - You have installed `Python 3.8+`_
 - You have a `GitHub`_ account.
 - You have installed `Docker`_ and `Docker Compose`_.
-- You have installed `PostgreSQL`_ if you're not using Docker for the database.
 
 Steps
 -----
