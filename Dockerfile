@@ -1,5 +1,5 @@
 # Utilisation de l'image Python officielle depuis Docker Hub
-FROM python:3.10-slim
+FROM python:3.14-slim
 
 # Configuration des variables d'environnement
 ENV PYTHONDONTWRITEBYTECODE=1
